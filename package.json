@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "tsx src/server.ts",
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "build": "rm -rf dist && tsc",
+    "start:prod": "node dist/server.js"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",
