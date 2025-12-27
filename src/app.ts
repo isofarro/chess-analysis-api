@@ -7,11 +7,13 @@ import analysisRoutes from "./routes/analysis.js";
 export async function buildApp() {
   const app = Fastify({
     logger: true,
+    trustProxy: true, // Trust Nginx/Proxy headers (X-Forwarded-*)
   });
 
   // Setup CORS
   await app.register(cors, {
-    origin: true, // Allow all origins (for browser usage as requested)
+    origin: "*", // Explicitly allow all origins (avoids issues with dynamic origin reflection behind proxies)
+    methods: ["GET", "HEAD", "OPTIONS"],
   });
 
   // Setup Database and Repository
