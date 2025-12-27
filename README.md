@@ -46,7 +46,7 @@ The API exposes a single endpoint to retrieve analysis data for a given FEN stri
 
 Retrieves all analysis records for the specified FEN.
 
-- **URL Param**: The FEN string (can be URL-encoded or raw if safe).
+- **URL Param**: The FEN string. **Must be URL-encoded** (including slashes).
 - **Response**: JSON array of analysis objects.
 
 #### Example
@@ -54,7 +54,8 @@ Retrieves all analysis records for the specified FEN.
 **Request:**
 
 ```bash
-curl "http://localhost:3000/analysis/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR%20w%20KQkq%20-%200%201"
+# FEN: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+curl "http://localhost:3000/analysis/rnbqkbnr%2Fpppppppp%2F8%2F8%2F8%2F8%2FPPPPPPPP%2FRNBQKBNR%20w%20KQkq%20-%200%201"
 ```
 
 **Response:**

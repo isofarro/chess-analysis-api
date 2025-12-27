@@ -9,22 +9,18 @@ export default async function analysisRoutes(
   const { repository } = options;
 
   fastify.get(
-    "/analysis/*",
+    "/analysis/:fen",
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
-        // Extract FEN from the wildcard path
-        const params = request.params as { "*"?: string };
-        const rawFenParams = params["*"];
+        const params = request.params as { fen: string };
+        const rawFen = params.fen;
 
-        if (!rawFenParams) {
+        if (!rawFen) {
           return reply.status(400).send({ error: "Missing FEN string" });
         }
 
-        // Decode URL components (handle spaces, slashes, etc.)
-        const decodedFen = decodeURIComponent(rawFenParams);
-
-        // Normalize FEN
-        const normalizedFen = normalizeFen(decodedFen);
+        // Normalize FEN (Fastify automatically decodes the URL parameter)
+        const normalizedFen = normalizeFen(rawFen);
 
         // Query Database
         const results = repository.getAnalysis(normalizedFen);
