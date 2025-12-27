@@ -1,4 +1,29 @@
 {
   "name": "fen-analysis",
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.6.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "better-sqlite3": "^12.5.0",
+    "fastify": "^5.6.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.0.3",
+    "biome": "^0.3.3",
+    "prettier": "^3.7.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  },
+  "dependenciesMeta": {
+    "@types/node@25.0.3": {
+      "unplugged": true
+    }
+  }
 }
