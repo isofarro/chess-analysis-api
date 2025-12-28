@@ -55,4 +55,18 @@ describe("GET /analysis/:fen", () => {
       "Missing FEN string",
     );
   });
+
+  it("should have correct CORS headers", async () => {
+    const response = await app.inject({
+      method: "OPTIONS",
+      url: "/analysis/some-fen",
+      headers: {
+        Origin: "http://example.com",
+        "Access-Control-Request-Method": "GET",
+      },
+    });
+
+    expect(response.headers["access-control-allow-origin"]).toBe("*");
+    expect(response.headers["access-control-allow-methods"]).toContain("GET");
+  });
 });
